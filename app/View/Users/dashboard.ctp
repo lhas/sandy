@@ -12,7 +12,7 @@
 
 <legend class="legend-dashboard">Gerenciar...</legend>
 
-<?php echo $this->Html->link('<i class="icon-user"></i> Usuário', array(), array('class' => 'btn btn-inverse btn-dashboard', 'escape' => false) ); ?>
+<?php echo $this->Html->link('<i class="icon-user"></i> Usuário', array('controller' => 'users', 'action' => 'index'), array('class' => 'btn btn-inverse btn-dashboard', 'escape' => false) ); ?>
 
 <div class="clear clearfix"></div>
 

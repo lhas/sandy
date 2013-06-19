@@ -98,18 +98,8 @@
 				</div>
 
 			</div> <!-- .row -->
-
-		</footer>
-
-		<aside id="sql-dump">
-
-			<div class="row">
-
-				<?php echo $this->element('sql_dump'); ?>
-
-			</div> <!-- .row -->
 			
-		</aside> <!-- #sql-dump -->
+		</footer>
 
 	</div> <!-- .container -->
 

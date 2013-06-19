@@ -1,5 +1,5 @@
 <div class="musculations index">
-	<h2><?php echo __('Musculations'); ?></h2>
+	<legend><?php echo __('Séries de Musculação'); ?> <?php echo $this->Html->link('<i class="icon-chevron-sign-left"></i> Voltar', array('controller' => 'users', 'action' => 'dashboard'), array('class' => 'btn', 'escape' => false) ); ?></legend>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>

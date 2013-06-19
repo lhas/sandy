@@ -9,9 +9,9 @@ class HasmanyHelper extends AppHelper {
 	);
 
 	# Inicializa alguns campos necessários para o funcionamento do helper.
-	public function init($id = 'Hasmany') {
+	public function init($id = 'Hasmany', $i = 0) {
 		# Inicializa o campo de count
-		echo $this->Form->input('i', array('label' => false, 'div' => false, 'name' => 'i', 'value' => '0', 'type' => 'hidden', 'id' => $id) );
+		echo $this->Form->input('i', array('label' => false, 'div' => false, 'name' => 'i', 'value' => $i, 'type' => 'hidden', 'id' => $id) );
 		
 		# Inicializa a <div> container
 		echo '<div id="' . $id . 'Container"></div>';

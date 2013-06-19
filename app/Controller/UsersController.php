@@ -74,14 +74,14 @@ class UsersController extends AppController {
 	# Página para editar usuário cadastrado
 	public function edit($id = null) {
 		if (!$this->User->exists($id)) {
-			throw new NotFoundException(__('Invalid user'));
+			throw new NotFoundException(__('Usuário inválido.'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
-			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('The user has been saved'));
+			if ($this->User->saveAll($this->request->data)) {
+				$this->Session->setFlash(__('O usuário foi editado com sucesso.'), 'success');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('Não foi possível editar o usuário.'), 'error');
 			}
 		} else {
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
