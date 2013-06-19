@@ -1,0 +1,7 @@
+#logout { margin-top: 26px; }
+.btn-dashboard { margin-top: 12px; }
+.legend-dashboard { margin-top: 12px; }
+input[type="text"], input[type="password"], textarea, input[type="submit"], button { width: 100%; }
+select { width: 101%; }
+button[class="close"] { width: auto; }
+div.error-message { color: red; font-size: 12px; margin-bottom: 6px; }
