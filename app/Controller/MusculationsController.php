@@ -7,11 +7,15 @@ App::uses('AppController', 'Controller');
  */
 class MusculationsController extends AppController {
 
-/**
- * index method
- *
- * @return void
- */
+	# Método usado na requisição AJAX de inserir novos exercícios na série de musculação
+	public function ajax_musculationexercise_fields() {
+		$this->layout = "ajax";
+
+		$i = $_POST['i'];
+
+		$this->set(compact('i'));
+	}
+
 	public function index() {
 		$this->Musculation->recursive = 0;
 		$this->set('musculations', $this->paginate());
@@ -40,14 +44,14 @@ class MusculationsController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Musculation->create();
-			if ($this->Musculation->save($this->request->data)) {
-				$this->Session->setFlash(__('The musculation has been saved'));
-				$this->redirect(array('action' => 'index'));
+			if ($this->Musculation->saveAll($this->request->data)) {
+				$this->Session->setFlash(__('A série de musculação foi cadastrada com sucesso.'), 'success');
+				$this->redirect(array('controller' => 'users', 'action' => 'dashboard'));
 			} else {
-				$this->Session->setFlash(__('The musculation could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('Não foi possível salvar a série.'), 'error');
 			}
 		}
-		$users = $this->Musculation->User->find('list');
+		$users = $this->Musculation->User->find('list', array('fields' => array('User.id', 'User.username') ) );
 		$this->set(compact('users'));
 	}
 

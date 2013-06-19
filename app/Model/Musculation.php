@@ -71,4 +71,8 @@ class Musculation extends AppModel {
 			'order' => ''
 		)
 	);
+
+	public $hasMany = array(
+		'MusculationExercise'
+	);
 }

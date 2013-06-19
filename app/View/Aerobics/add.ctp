@@ -1,7 +1,9 @@
 <div class="aerobics form">
 <?php echo $this->Form->create('Aerobic'); ?>
 	<fieldset>
-		<legend><?php echo __('Adicionar Série Aeróbica'); ?></legend>
+		<legend>
+			<?php echo __('Adicionar Série Aeróbica'); ?> <?php echo $this->Html->link('<i class="icon-chevron-sign-left"></i> Voltar', array('controller' => 'users', 'action' => 'dashboard'), array('class' => 'btn', 'escape' => false) ); ?>
+		</legend>
 	<?php
 		# Usuário
 		echo $this->Form->input('user_id', array('label' => 'Usuário que terá esta série') );

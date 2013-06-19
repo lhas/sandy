@@ -1,7 +1,8 @@
 <div class="users form">
 <?php echo $this->Form->create('User'); ?>
 	<fieldset>
-		<legend><?php echo __('Adicionar Usuário'); ?> <?php echo $this->Html->link('<i class="icon-chevron-sign-left"></i> Voltar', array('action' => 'dashboard'), array('class' => 'btn', 'escape' => false) ); ?></legend>
+		<legend><?php echo __('Adicionar Usuário'); ?>
+			<?php echo $this->Html->link('<i class="icon-chevron-sign-left"></i> Voltar', array('action' => 'dashboard'), array('class' => 'btn', 'escape' => false) ); ?></legend>
 	<?php
 		# E-mail
 		echo $this->Form->input('username', array('label' => 'E-mail', 'required' => false) );
