@@ -1,6 +1,13 @@
 <?php
 class User extends AppModel {
 
+	public $actsAs = array('Search.Searchable');
+
+	public $filterArgs = array(
+		'username' => array('type' => 'like', 'field' => array('User.username', 'UserMeta.value') ),
+		'role' => array('type' => 'value')
+	);
+
 	public $validate = array(
 		'username' => array(
 			'notempty' => array(
@@ -26,10 +33,12 @@ class User extends AppModel {
 		),
 	);
 
+	public $hasOne = array('UserMeta');
+
 	public $hasMany = array(
+		'UserMeta',
 		'Aerobic',
 		'Musculation',
-		'UserMeta'
 	);
 
 	public function beforeSave($options = array()) {

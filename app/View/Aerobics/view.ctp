@@ -1,9 +1,9 @@
 <div class="aerobics view">
 <legend><?php  echo __('Visualização da Série'); ?> <?php echo $this->Html->link('<i class="icon-chevron-sign-left"></i> Voltar', array('controller' => 'aerobics', 'action' => 'index'), array('class' => 'btn', 'escape' => false) ); ?></legend>
 	<dl>
-		<dt><?php echo __('User'); ?></dt>
+		<dt><?php echo __('Usuário'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($aerobic['User']['username'], array('controller' => 'users', 'action' => 'view', $aerobic['User']['id'])); ?>
+			<?php echo $this->Html->link($aerobic['User']['UserMeta']['16']['value'], array('controller' => 'users', 'action' => 'view', $aerobic['User']['id'])); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Data de Início da Série'); ?></dt>

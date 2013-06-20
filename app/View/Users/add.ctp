@@ -13,6 +13,11 @@
 		# Cargo
 		echo $this->Form->input('cargo', array('label' => 'Cargo', 'options' => array('admin' => 'Administrador', 'aluno' => 'Aluno'), 'selected' => 'aluno', 'required' => false) );
 
+		# Nome Completo
+		echo $this->Form->hidden('UserMeta.16.label', array('value' => 'Nome Completo') );
+		echo $this->Form->hidden('UserMeta.16.key', array('value' => 'nome_completo') );
+		echo $this->Form->input('UserMeta.16.value', array('label' => 'Nome Completo') );
+
 		# Data de Nascimento
 		echo $this->Form->hidden('UserMeta.0.label', array('value' => 'Data de Nascimento') );
 		echo $this->Form->hidden('UserMeta.0.key', array('value' => 'data_de_nascimento') );

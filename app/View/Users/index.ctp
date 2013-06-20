@@ -1,13 +1,25 @@
+<legend>Pesquisa</legend>
+<?php
+	echo $this->Form->create('User', array(
+    'url' => array_merge(array('action' => 'index'), $this->params['pass'])
+));
+	echo $this->Form->input('username', array('div' => false, 'label' => 'E-mail ou Nome Completo'));
+	echo $this->Form->button('<i class="icon-search"></i> Pesquisar', array('div' => false, 'class' => 'btn btn-primary', 'escape' => false));
+	echo $this->Form->end();
+?>
+
 <div class="users index">
 	<legend><?php echo __('Usuários'); ?> <?php echo $this->Html->link('<i class="icon-chevron-sign-left"></i> Voltar', array('controller' => 'users', 'action' => 'dashboard'), array('class' => 'btn', 'escape' => false) ); ?></legend>
 	<table class="table table-bordered">
 	<tr>
+			<th><?php echo $this->Paginator->sort('UserMeta.value', 'Nome Completo'); ?></th>
 			<th><?php echo $this->Paginator->sort('username', 'E-mail'); ?></th>
 			<th><?php echo $this->Paginator->sort('created', 'Data de Inserção'); ?></th>
 			<th class="actions"><?php echo __('Ações'); ?></th>
 	</tr>
 	<?php foreach ($users as $user): ?>
 	<tr>
+		<td><?php echo h($user['UserMeta']['16']['value']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['username']); ?>&nbsp;</td>
 		<td><?php $data = new DateTime($user['User']['created']); echo $data->format('d/m/Y'); ?>&nbsp;</td>
 		<td class="actions">

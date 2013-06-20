@@ -1,17 +1,12 @@
 <div class="musculations view">
-<h2><?php  echo __('Musculation'); ?></h2>
+<legend><?php  echo __('Visualização da Série'); ?> <?php echo $this->Html->link('<i class="icon-chevron-sign-left"></i> Voltar', array('controller' => 'musculations', 'action' => 'index'), array('class' => 'btn', 'escape' => false) ); ?></legend>
 	<dl>
-		<dt><?php echo __('Id'); ?></dt>
+		<dt><?php echo __('Usuário'); ?></dt>
 		<dd>
-			<?php echo h($musculation['Musculation']['id']); ?>
+			<?php echo $this->Html->link($musculation['User']['UserMeta']['16']['value'], array('controller' => 'users', 'action' => 'view', $musculation['User']['id'])); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('User'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($musculation['User']['id'], array('controller' => 'users', 'action' => 'view', $musculation['User']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Inicio'); ?></dt>
+		<dt><?php echo __('Início'); ?></dt>
 		<dd>
 			<?php echo h($musculation['Musculation']['inicio']); ?>
 			&nbsp;
@@ -21,31 +16,39 @@
 			<?php echo h($musculation['Musculation']['objetivos']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Observacao'); ?></dt>
+		<dt><?php echo __('Observação'); ?></dt>
 		<dd>
 			<?php echo h($musculation['Musculation']['observacao']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Created'); ?></dt>
+		<dt><?php echo __('Data de Inserção'); ?></dt>
 		<dd>
-			<?php echo h($musculation['Musculation']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Modified'); ?></dt>
-		<dd>
-			<?php echo h($musculation['Musculation']['modified']); ?>
+			<?php $data = new DateTime($musculation['Musculation']['created']); echo $data->format('d/m/Y');
+			?>
 			&nbsp;
 		</dd>
 	</dl>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Musculation'), array('action' => 'edit', $musculation['Musculation']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Musculation'), array('action' => 'delete', $musculation['Musculation']['id']), null, __('Are you sure you want to delete # %s?', $musculation['Musculation']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Musculations'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Musculation'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
-	</ul>
+
+	<dl>
+	<?php foreach ($musculation['MusculationExercise'] as $musculationExercise): ?>
+		<legend>Exercício: <?php echo $musculationExercise['exercise']; ?></legend>
+
+			<dt>Reg.</dt>
+			<dd>
+				<?php echo $musculationExercise['reg']; ?>
+			</dd>
+			<dt>Set./Rep.</dt>
+			<dd>
+				<?php echo $musculationExercise['set_rep']; ?>
+			</dd>
+			<dt>Fase 1</dt>
+			<dd>
+				<?php echo $musculationExercise['fase_1']; ?>
+			</dd>
+			<dt>Fase 2</dt>
+			<dd>
+				<?php echo $musculationExercise['fase_2']; ?>
+			</dd>
+	<?php endforeach; ?>
+	</dl>
 </div>

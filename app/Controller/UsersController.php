@@ -1,5 +1,7 @@
 <?php
 class UsersController extends AppController {
+	public $components = array('Search.Prg');
+	public $presetVars = true;
 
 	# Callback
 	public function beforeFilter() {
@@ -40,7 +42,12 @@ class UsersController extends AppController {
 
 	# Gerenciamento de usuários cadastrados
 	public function index() {
-		$this->User->recursive = 0;
+		$this->Prg->commonProcess();
+		$this->paginate = array(
+			'conditions' => $this->User->parseCriteria($this->passedArgs),
+			'group' => array('User.id')
+		);
+
 		$this->set('users', $this->paginate());
 	}
 

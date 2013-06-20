@@ -2,11 +2,13 @@
 class AerobicsController extends AppController {
 
 	public function index() {
-		$this->Aerobic->recursive = 0;
+		$this->Aerobic->recursive = 2;
 		$this->set('aerobics', $this->paginate());
 	}
 
 	public function view($id = null) {
+		$this->Aerobic->recursive = 2;
+		
 		if (!$this->Aerobic->exists($id)) {
 			throw new NotFoundException(__('Série de aeróbica inválida'));
 		}
@@ -58,14 +60,14 @@ class AerobicsController extends AppController {
 	public function delete($id = null) {
 		$this->Aerobic->id = $id;
 		if (!$this->Aerobic->exists()) {
-			throw new NotFoundException(__('Invalid aerobic'));
+			throw new NotFoundException(__('Série de aeróbica inválida'));
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Aerobic->delete()) {
-			$this->Session->setFlash(__('Aerobic deleted'));
+				$this->Session->setFlash(__('A série de aeróbica foi excluída com sucesso.'), 'success');
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Aerobic was not deleted'));
+		$this->Session->setFlash(__('Não foi possível excluir a série de aeróbica.'), 'error');
 		$this->redirect(array('action' => 'index'));
 	}
 

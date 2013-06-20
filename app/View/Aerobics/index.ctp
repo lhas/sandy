@@ -10,7 +10,7 @@
 	<?php foreach ($aerobics as $aerobic): ?>
 	<tr>
 		<td>
-			<?php echo $this->Html->link($aerobic['User']['username'], array('controller' => 'users', 'action' => 'view', $aerobic['User']['id'])); ?>
+			<?php echo $this->Html->link($aerobic['User']['UserMeta']['16']['value'], array('controller' => 'users', 'action' => 'view', $aerobic['User']['id'])); ?>
 		</td>
 		<td><?php echo h($aerobic['Aerobic']['inicio']); ?>&nbsp;</td>
 		<td><?php echo h($aerobic['Aerobic']['created']); ?>&nbsp;</td>

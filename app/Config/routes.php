@@ -27,6 +27,19 @@
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
 	Router::connect('/', array('controller' => 'users', 'action' => 'login'));
+	Router::connect('/series-de-aerobica', array('controller' => 'aerobics', 'action' => 'index'));
+	Router::connect('/series-de-aerobica/adicionar', array('controller' => 'aerobics', 'action' => 'add'));
+	Router::connect('/series-de-aerobica/editar/*', array('controller' => 'aerobics', 'action' => 'edit'));
+	Router::connect('/series-de-aerobica/ver/*', array('controller' => 'aerobics', 'action' => 'view'));
+	Router::connect('/area-restrita', array('controller' => 'users', 'action' => 'dashboard'));
+	Router::connect('/usuarios', array('controller' => 'users', 'action' => 'index'));
+	Router::connect('/usuarios/adicionar', array('controller' => 'users', 'action' => 'add'));
+	Router::connect('/usuarios/editar/*', array('controller' => 'users', 'action' => 'edit'));
+	Router::connect('/usuarios/ver/*', array('controller' => 'users', 'action' => 'view'));
+	Router::connect('/series-de-musculacao', array('controller' => 'musculations', 'action' => 'index'));
+	Router::connect('/series-de-musculacao/adicionar', array('controller' => 'musculations', 'action' => 'add'));
+	Router::connect('/series-de-musculacao/editar/*', array('controller' => 'musculations', 'action' => 'edit'));
+	Router::connect('/series-de-musculacao/ver/*', array('controller' => 'musculations', 'action' => 'view'));
 /**
  * ...and connect the rest of 'Pages' controller's urls.
  */

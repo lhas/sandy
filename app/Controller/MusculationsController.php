@@ -7,6 +7,15 @@ App::uses('AppController', 'Controller');
  */
 class MusculationsController extends AppController {
 
+	public function ajax_delete_exercise() {
+		$this->layout = "ajax";
+		$this->autoRender = false;
+
+		$id = $_POST['id'];
+
+		$this->Musculation->MusculationExercise->delete($id);
+	}
+
 	# Método usado na requisição AJAX de inserir novos exercícios na série de musculação
 	public function ajax_musculationexercise_fields() {
 		$this->layout = "ajax";
@@ -17,7 +26,7 @@ class MusculationsController extends AppController {
 	}
 
 	public function index() {
-		$this->Musculation->recursive = 0;
+		$this->Musculation->recursive = 2;
 		$this->set('musculations', $this->paginate());
 	}
 
@@ -29,8 +38,10 @@ class MusculationsController extends AppController {
  * @return void
  */
 	public function view($id = null) {
+		$this->Musculation->recursive = 2;
+		
 		if (!$this->Musculation->exists($id)) {
-			throw new NotFoundException(__('Invalid musculation'));
+			throw new NotFoundException(__('Série de musculação inválida'));
 		}
 		$options = array('conditions' => array('Musculation.' . $this->Musculation->primaryKey => $id));
 		$this->set('musculation', $this->Musculation->find('first', $options));
@@ -64,14 +75,14 @@ class MusculationsController extends AppController {
  */
 	public function edit($id = null) {
 		if (!$this->Musculation->exists($id)) {
-			throw new NotFoundException(__('Invalid musculation'));
+			throw new NotFoundException(__('Série de musculação inválida'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
-			if ($this->Musculation->save($this->request->data)) {
-				$this->Session->setFlash(__('The musculation has been saved'));
+			if ($this->Musculation->saveAll($this->request->data)) {
+				$this->Session->setFlash(__('A série de musculação foi editada com sucesso.'), 'success');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The musculation could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('Não foi possível editar a série.'), 'error');
 			}
 		} else {
 			$options = array('conditions' => array('Musculation.' . $this->Musculation->primaryKey => $id));
@@ -91,14 +102,14 @@ class MusculationsController extends AppController {
 	public function delete($id = null) {
 		$this->Musculation->id = $id;
 		if (!$this->Musculation->exists()) {
-			throw new NotFoundException(__('Invalid musculation'));
+			throw new NotFoundException(__('Série de musculação inválida'));
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Musculation->delete()) {
-			$this->Session->setFlash(__('Musculation deleted'));
+				$this->Session->setFlash(__('A série de musculação foi excluída com sucesso.'), 'success');
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Musculation was not deleted'));
+		$this->Session->setFlash(__('Não foi possível excluir a série.'), 'error');
 		$this->redirect(array('action' => 'index'));
 	}
 }
