@@ -7,6 +7,23 @@ App::uses('AppController', 'Controller');
  */
 class MusculationsController extends AppController {
 
+	public function table($id = null) {
+
+		$serie = $this->Musculation->find('first', array(
+			'contain' => array(
+				'User' => array(
+					'UserMeta'
+				),
+				'MusculationExercise'
+			),
+			'conditions' => array(
+				'Musculation.id' => $id
+			)
+		) );
+
+		$this->set(compact('serie'));
+	}
+
 	public function ajax_delete_exercise() {
 		$this->layout = "ajax";
 		$this->autoRender = false;
@@ -111,5 +128,21 @@ class MusculationsController extends AppController {
 		}
 		$this->Session->setFlash(__('Não foi possível excluir a série.'), 'error');
 		$this->redirect(array('action' => 'index'));
+	}
+
+	public function isAuthorized($user) {
+	    // All registered users can add posts
+	    if (in_array($this->action, array('table'))) {
+	        return true;
+	    }
+
+	    // The owner of a post can edit and delete it
+	    if (in_array($this->action, array('edit', 'delete', 'index'))) {
+	        if (isset($user['role']) && $user['role'] === 'admin') {
+				return true;
+			}
+	    }
+
+	    return parent::isAuthorized($user);
 	}
 }

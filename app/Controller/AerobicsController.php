@@ -1,6 +1,23 @@
 <?php
 class AerobicsController extends AppController {
 
+	public function table($id = null) {
+
+		$serie = $this->Aerobic->find('first', array(
+			'contain' => array(
+				'User' => array(
+					'UserMeta'
+				),
+				'AerobicStep'
+			),
+			'conditions' => array(
+				'Aerobic.id' => $id
+			)
+		) );
+
+		$this->set(compact('serie'));
+	}
+
 	public function index() {
 		$this->Aerobic->recursive = 2;
 		$this->set('aerobics', $this->paginate());
@@ -87,5 +104,21 @@ class AerobicsController extends AppController {
 		$id = $_POST['id'];
 
 		$this->Aerobic->AerobicStep->delete($id);
+	}
+
+	public function isAuthorized($user) {
+	    // All registered users can add posts
+	    if (in_array($this->action, array('table'))) {
+	        return true;
+	    }
+
+	    // The owner of a post can edit and delete it
+	    if (in_array($this->action, array('edit', 'delete', 'index'))) {
+	        if (isset($user['role']) && $user['role'] === 'admin') {
+				return true;
+			}
+	    }
+
+	    return parent::isAuthorized($user);
 	}
 }

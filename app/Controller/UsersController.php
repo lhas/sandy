@@ -14,7 +14,10 @@ class UsersController extends AppController {
 
 	# Página de gerenciamento central da aplicação
 	public function dashboard() {
-
+		$series_aerobica = $this->User->Aerobic->find('all', array('contain' => array('AerobicStep'), 'order' => array('Aerobic.inicio' => 'DESC'), 'conditions' => array('Aerobic.user_id' => AuthComponent::user('id') ) ) );
+		$series_musculacao = $this->User->Musculation->find('all', array('order' => array('Musculation.inicio' => 'DESC'), 'contain' => array('MusculationExercise'), 'conditions' => array('Musculation.user_id' => AuthComponent::user('id') ) ) );
+	
+		$this->set(compact('series_aerobica', 'series_musculacao'));
 	}
 
 	# Página de login
@@ -109,5 +112,21 @@ class UsersController extends AppController {
 		}
 		$this->Session->setFlash(__('User was not deleted'));
 		$this->redirect(array('action' => 'index'));
+	}
+
+	public function isAuthorized($user) {
+	    // All registered users can add posts
+	    if (in_array($this->action, array('dashboard', 'login', 'logout'))) {
+	        return true;
+	    }
+
+	    // The owner of a post can edit and delete it
+	    if (in_array($this->action, array('edit', 'delete', 'index'))) {
+	        if (isset($user['role']) && $user['role'] === 'admin') {
+				return true;
+			}
+	    }
+
+	    return parent::isAuthorized($user);
 	}
 }

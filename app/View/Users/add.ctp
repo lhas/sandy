@@ -114,6 +114,6 @@
 		$("#UserMeta2Value").mask("(99) 9999-9999?9");
 
 		// Telefone Residencial
-		$("#UserMeta2Value").mask("(99) 9999-9999?9");
+		$("#UserMeta3Value").mask("(99) 9999-9999?9");
 	});
 </script>

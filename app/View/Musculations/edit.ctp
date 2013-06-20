@@ -1,7 +1,7 @@
 <div class="musculations form">
 <?php echo $this->Form->create('Musculation'); ?>
 	<fieldset>
-		<legend><?php echo __('Editar Série de Musculação'); ?></legend>
+		<legend><?php echo __('Editar Série de Musculação'); ?> <?php echo $this->Html->link('<i class="icon-chevron-sign-left"></i> Voltar', array('controller' => 'musculations', 'action' => 'index'), array('class' => 'btn', 'escape' => false) ); ?></legend>
 	<?php
 		echo $this->Form->input('id');
 
