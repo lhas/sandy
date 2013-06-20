@@ -17,7 +17,7 @@
 		<td class="actions">
 			<?php echo $this->Html->link(__('Ver'), array('action' => 'view', $aerobic['Aerobic']['id'])); ?>
 			<?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $aerobic['Aerobic']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Deletar'), array('action' => 'delete', $aerobic['Aerobic']['id']), null, __('Are you sure you want to delete # %s?', $aerobic['Aerobic']['id'])); ?>
+			<?php echo $this->Form->postLink(__('Deletar'), array('action' => 'delete', $aerobic['Aerobic']['id']), null, __('Você tem certeza disto? Esta ação é PERMANENTE!', $aerobic['Aerobic']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -39,6 +39,6 @@
 
 <script>
 	$(document).ready(function() {
-		$(".paging a, .paging span").addClass("btn");
+		$(".paging a, .paging span, .actions a").addClass("btn");
 	});
 </script>

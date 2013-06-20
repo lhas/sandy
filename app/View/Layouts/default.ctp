@@ -51,9 +51,11 @@
 						<?php echo $this->Html->image('logo.png'); ?>
 					</h2> <!-- #logo -->
 
-					<div id="logout" class="span3">
-						<?php echo $this->Html->link('<i class="icon-off"></i> Sair', array('controller' => 'users', 'action' => 'logout'), array('class' => 'btn', 'escape' => false) ); ?>
-					</div> <!-- #logout -->
+					<?php if(AuthComponent::user()) { ?>
+						<div id="logout" class="span3">
+							<?php echo $this->Html->link('<i class="icon-off"></i> Sair', array('controller' => 'users', 'action' => 'logout'), array('class' => 'btn', 'escape' => false) ); ?>
+						</div> <!-- #logout -->
+					<?php } ?>
 
 					<div class="clear clearfix"></div>
 

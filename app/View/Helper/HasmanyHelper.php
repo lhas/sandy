@@ -13,8 +13,10 @@ class HasmanyHelper extends AppHelper {
 		# Inicializa o campo de count
 		echo $this->Form->input('i', array('label' => false, 'div' => false, 'name' => 'i', 'value' => $i, 'type' => 'hidden', 'id' => $id) );
 		
-		# Inicializa a <div> container
-		echo '<div id="' . $id . 'Container"></div>';
+		if($i == 0) {
+			# Inicializa a <div> container
+			echo '<div id="' . $id . 'Container"></div>';
+		}
 	}
 
 	public function add_button($id = 'Hasmany', $label = 'Hasmany', $url = array()) {

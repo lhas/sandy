@@ -1,5 +1,5 @@
 <div class="aerobics view">
-<legend><?php  echo __('Visualização da Série'); ?> <?php echo $this->Html->link('<i class="icon-chevron-sign-left"></i> Voltar', array('controller' => 'users', 'action' => 'index'), array('class' => 'btn', 'escape' => false) ); ?></legend>
+<legend><?php  echo __('Visualização da Série'); ?> <?php echo $this->Html->link('<i class="icon-chevron-sign-left"></i> Voltar', array('controller' => 'aerobics', 'action' => 'index'), array('class' => 'btn', 'escape' => false) ); ?></legend>
 	<dl>
 		<dt><?php echo __('User'); ?></dt>
 		<dd>

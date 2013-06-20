@@ -9,7 +9,7 @@
 		<?php
 			echo $this->Form->input('username', array('label' => 'E-mail') );
 			echo $this->Form->input('password', array('label' => 'Senha') );
-			echo $this->Form->submit('<i class="icon-ok"></i> Entrar', array('class' => 'btn btn-success') );
+			echo $this->Form->button('<i class="icon-ok"></i> Entrar', array('class' => 'btn btn-success') );
 		?>
 	</fieldset>
 

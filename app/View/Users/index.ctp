@@ -35,6 +35,6 @@
 
 <script>
 	$(document).ready(function() {
-		$(".paging a, .paging span").addClass("btn");
+		$(".paging a, .paging span, .actions a").addClass("btn");
 	});
 </script>

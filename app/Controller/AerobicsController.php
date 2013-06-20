@@ -8,7 +8,7 @@ class AerobicsController extends AppController {
 
 	public function view($id = null) {
 		if (!$this->Aerobic->exists($id)) {
-			throw new NotFoundException(__('Invalid aerobic'));
+			throw new NotFoundException(__('Série de aeróbica inválida'));
 		}
 		$options = array('conditions' => array('Aerobic.' . $this->Aerobic->primaryKey => $id));
 		$this->set('aerobic', $this->Aerobic->find('first', $options));
@@ -38,14 +38,14 @@ class AerobicsController extends AppController {
 
 	public function edit($id = null) {
 		if (!$this->Aerobic->exists($id)) {
-			throw new NotFoundException(__('Invalid aerobic'));
+			throw new NotFoundException(__('Série de aeróbica inválida'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
-			if ($this->Aerobic->save($this->request->data)) {
-				$this->Session->setFlash(__('The aerobic has been saved'));
+			if ($this->Aerobic->saveAll($this->request->data)) {
+				$this->Session->setFlash(__('A série de aeróbica foi editada com sucesso.'), 'success');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The aerobic could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('Não foi possível editar a série de aeróbica.'), 'error');
 			}
 		} else {
 			$options = array('conditions' => array('Aerobic.' . $this->Aerobic->primaryKey => $id));
@@ -76,5 +76,14 @@ class AerobicsController extends AppController {
 		$i = $_POST['i'];
 
 		$this->set(compact('i'));
+	}
+
+	public function ajax_delete_step() {
+		$this->layout = "ajax";
+		$this->autoRender = false;
+
+		$id = $_POST['id'];
+
+		$this->Aerobic->AerobicStep->delete($id);
 	}
 }

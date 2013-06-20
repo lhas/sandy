@@ -27,44 +27,70 @@
 
 		# Hasmany Helper
 		echo $this->Hasmany->init('AerobicStep', count($this->request->data['AerobicStep']));
-		echo $this->Hasmany->add_button('AerobicStep', '<i class="icon-plus"></i> Adicionar Fase', array('action' => 'ajax_aerobicstep_fields') );
 	?>
 
-	<?php for($i = 0; $i <= count($this->request->data['AerobicStep']); $i++) { ?>
-		<?php echo $this->Form->input('AerobicStep.' . $i . '.step', array('value' => $i + 1, 'type' => 'hidden') ); ?>
-		<?php echo $this->Form->input('AerobicStep.' . $i . '.ergometro', array('label' => 'Ergômetro') ); ?>
-		<?php echo $this->Form->input('AerobicStep.' . $i . '.tipo_de_exercicio', array('label' => 'Tipo de Exercício') ); ?>
-		<?php echo $this->Form->input('AerobicStep.' . $i . '.tipo_de_programa', array('label' => 'Tipo de Programa') ); ?>
-		<?php echo $this->Form->input('AerobicStep.' . $i . '.tempo_total', array('label' => 'Tempo Total') ); ?>
-		<?php echo $this->Form->input('AerobicStep.' . $i . '.numero_de_sets', array('label' => 'Número de Sets') ); ?>
-		<?php echo $this->Form->input('AerobicStep.' . $i . '.distancia_para_sets', array('label' => 'Distância para Sets') ); ?>
-		<?php echo $this->Form->input('AerobicStep.' . $i . '.tempo_para_sets', array('label' => 'Tempo para Sets') ); ?>
-		<?php echo $this->Form->input('AerobicStep.' . $i . '.velocidade_sets', array('label' => 'Velocidade dos Sets') ); ?>
-		<?php echo $this->Form->input('AerobicStep.' . $i . '.tempo_de_recuperacao', array('label' => 'Tempo de Recuperação') ); ?>
-		<?php echo $this->Form->input('AerobicStep.' . $i . '.velocidade_de_recuperacao', array('label' => 'Velocidade de Recuperação') ); ?>
-		<?php echo $this->Form->input('AerobicStep.' . $i . '.inclinacao', array('label' => 'Inclinação') ); ?>
-		<?php echo $this->Form->input('AerobicStep.' . $i . '.resistencia', array('label' => 'Resistência') ); ?>
-		<?php echo $this->Form->input('AerobicStep.' . $i . '.nivel', array('label' => 'Nível') ); ?>
-		<?php echo $this->Form->input('AerobicStep.' . $i . '.distancia_total', array('label' => 'Distância Total') ); ?>
-		<?php echo $this->Form->input('AerobicStep.' . $i . '.gasto_calorico', array('label' => 'Gasto Calórico') ); ?>
-	<?php } ?>
+	<div id="AerobicStepContainer">
+		<?php for($i = 0; $i <= count($this->request->data['AerobicStep']) - 1; $i++) { ?>
+
+			<div id="campos-<?php echo $i + 1; ?>">
+				<legend>Fase #<?php echo $i + 1; ?>
+					<a href="javascript:;" data-database-id="<?php echo $this->request->data['AerobicStep'][$i]['id']; ?>" data-cadastrado="true" data-id="<?php echo $i + 1; ?>" class="btn-excluir-hasmany btn btn-danger"><i class="icon-trash"></i> Excluir</a>
+				</legend>
+
+				<?php echo $this->Form->input('AerobicStep.' . $i . '.id'); ?>
+				<?php echo $this->Form->input('AerobicStep.' . $i . '.step', array('value' => $i + 1, 'type' => 'hidden') ); ?>
+				<?php echo $this->Form->input('AerobicStep.' . $i . '.ergometro', array('label' => 'Ergômetro') ); ?>
+				<?php echo $this->Form->input('AerobicStep.' . $i . '.tipo_de_exercicio', array('label' => 'Tipo de Exercício') ); ?>
+				<?php echo $this->Form->input('AerobicStep.' . $i . '.tipo_de_programa', array('label' => 'Tipo de Programa') ); ?>
+				<?php echo $this->Form->input('AerobicStep.' . $i . '.tempo_total', array('label' => 'Tempo Total') ); ?>
+				<?php echo $this->Form->input('AerobicStep.' . $i . '.numero_de_sets', array('label' => 'Número de Sets') ); ?>
+				<?php echo $this->Form->input('AerobicStep.' . $i . '.distancia_para_sets', array('label' => 'Distância para Sets') ); ?>
+				<?php echo $this->Form->input('AerobicStep.' . $i . '.tempo_para_sets', array('label' => 'Tempo para Sets') ); ?>
+				<?php echo $this->Form->input('AerobicStep.' . $i . '.velocidade_sets', array('label' => 'Velocidade dos Sets') ); ?>
+				<?php echo $this->Form->input('AerobicStep.' . $i . '.tempo_de_recuperacao', array('label' => 'Tempo de Recuperação') ); ?>
+				<?php echo $this->Form->input('AerobicStep.' . $i . '.velocidade_de_recuperacao', array('label' => 'Velocidade de Recuperação') ); ?>
+				<?php echo $this->Form->input('AerobicStep.' . $i . '.inclinacao', array('label' => 'Inclinação') ); ?>
+				<?php echo $this->Form->input('AerobicStep.' . $i . '.resistencia', array('label' => 'Resistência') ); ?>
+				<?php echo $this->Form->input('AerobicStep.' . $i . '.nivel', array('label' => 'Nível') ); ?>
+				<?php echo $this->Form->input('AerobicStep.' . $i . '.distancia_total', array('label' => 'Distância Total') ); ?>
+				<?php echo $this->Form->input('AerobicStep.' . $i . '.gasto_calorico', array('label' => 'Gasto Calórico') ); ?>
+			</div>
+		<?php } ?>
+	</div>
+
+	<?php echo $this->Hasmany->add_button('AerobicStep', '<i class="icon-plus"></i> Adicionar Fase', array('action' => 'ajax_aerobicstep_fields') ); ?>
 
 	<?php
 		# Enviar
 		echo $this->Form->button('<i class="icon-ok"></i> Enviar', array('class' => 'btn btn-success', 'escape' => false) );
-		?>
+	?>
 	</fieldset>
 <?php echo $this->Form->end(); ?>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
 
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Aerobic.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Aerobic.id'))); ?></li>
-		<li><?php echo $this->Html->link(__('List Aerobics'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Aerobic Steps'), array('controller' => 'aerobic_steps', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Aerobic Step'), array('controller' => 'aerobic_steps', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("body").on("click", ".btn-excluir-hasmany", function() {
+			var confirmacao = confirm("Você tem certeza disto? Esta ação é PERMANENTE!");
+
+			if(confirmacao) {
+				var id = $(this).data('id');
+
+				$("#AerobicStep").val(parseInt($("#AerobicStep").val()) - 1);
+
+				$("#campos-" + id).fadeOut(300);
+
+				if($(this).data('cadastrado') == true) {
+					$.ajax({
+						type: 'POST',
+						data: {'id': $(this).data('database-id')},
+						url: '<?php echo $this->Html->url( array('controller' => 'aerobics', 'action' => 'ajax_delete_step') ); ?>',
+						success: function(data) {
+							$("#campos-" + id).remove();
+						}
+					});
+				}
+			}
+		});
+	});
+</script>
